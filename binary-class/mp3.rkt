@@ -1,6 +1,6 @@
 #lang racket/base
 (require binary-class racket/class)
-(provide read-id3 song album artist track year genre translated-genre id3-tag%)
+(provide read-id3 song album artist track year genre translated-genre id3-tag% get-text-info)
 
 (define id3-tag-size (unsigned-integer 4 7))
 
