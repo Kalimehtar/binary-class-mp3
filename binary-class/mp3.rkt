@@ -35,7 +35,7 @@
   
   (define (read-id3 file)
     (call-with-input-file file
-      (λ (in) (read-object id3-tag% in))))
+      (λ (in) (read-value id3-tag% in))))
   
   (define (show-tag-header file)
     (define data (read-id3 file))
@@ -128,7 +128,7 @@
            [(positive? to-read)
             (define frame 
               (with-handlers ([(λ (e) (eq? e 'in-padding)) (λ (e) null)])
-                (read-object frame-type in)))
+                (read-value frame-type in)))
             (if (null? frame)
                 (begin0
                   (reverse frames)
