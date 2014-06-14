@@ -207,7 +207,7 @@
   
   (define (get-text-info id3 . ids)
     (let ((frame (find-frame id3 ids)))
-      (when frame (upto-null (get-field information frame)))))
+      (if frame (upto-null (get-field information frame)) #f)))
   
   (define (upto-null str)
     (define pos (for/first ([ch (in-string str)] [pos (in-naturals)] #:when (char=? ch #\nul)) pos))
@@ -310,13 +310,13 @@
                            [grouping-identity u1?])))
   (provide/contract 
    [read-id3 (-> path-string? (is-a?/c id3-tag%))]
-   [song (-> (is-a?/c id3-tag%) string?)]
-   [album (-> (is-a?/c id3-tag%) string?)]
-   [artist (-> (is-a?/c id3-tag%) string?)]
-   [track (-> (is-a?/c id3-tag%) string?)]
-   [year (-> (is-a?/c id3-tag%) string?)]
-   [genre (-> (is-a?/c id3-tag%) string?)]
-   [translated-genre (-> (is-a?/c id3-tag%) string?)]
+   [song (-> (is-a?/c id3-tag%) (or/c #f string?))]
+   [album (-> (is-a?/c id3-tag%) (or/c #f string?))]
+   [artist (-> (is-a?/c id3-tag%) (or/c #f string?))]
+   [track (-> (is-a?/c id3-tag%) (or/c #f string?))]
+   [year (-> (is-a?/c id3-tag%) (or/c #f string?))]
+   [genre (-> (is-a?/c id3-tag%) (or/c #f string?))]
+   [translated-genre (-> (is-a?/c id3-tag%) (or/c #f string?))]
    [id3-tag% (id3-tag/c id3-tag%)]
    [id3v2.2-tag% (id3-tag/c id3v2.2-tag% 
                             (field [frames (listof (is-a?/c id3v2.2-frame%))]))]
