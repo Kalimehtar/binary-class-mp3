@@ -2,3 +2,4 @@
 (define version "0.91")
 (define collection 'multi)
 (define deps '("binary-class" "base" "scribble-lib"))
+(define build-deps '("racket-doc"))
